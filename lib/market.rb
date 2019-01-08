@@ -1,3 +1,4 @@
+require 'pry'
 class Market
 
   attr_reader :name,
@@ -47,6 +48,35 @@ class Market
       inventory[item] = inventory_for_one_item(item)
     end
     inventory
+  end
+
+  def check_enough_to_sell(item, quantity)
+    if inventory_for_one_item(item) < quantity
+      return false
+    else
+      return true
+    end
+  end
+
+  def remove_item_from_stock(item, quantity)
+    vendors = vendors_that_sell(item)
+    vendors.each do |vendor|
+      if vendor.inventory[item] <= quantity
+        quantity -= vendor.inventory[item]
+        vendor.inventory[item] = 0
+      else
+        vendor.inventory[item] -=quantity
+      end
+    end
+  end
+
+  def sell(item, quantity)
+    if check_enough_to_sell(item, quantity) == false
+      return false
+    else
+      remove_item_from_stock(item,quantity)
+      return true
+    end
   end
 
 end
