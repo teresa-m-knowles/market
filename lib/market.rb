@@ -59,8 +59,7 @@ class Market
   end
 
   def remove_item_from_stock(item, quantity)
-    vendors = vendors_that_sell(item)
-    vendors.each do |vendor|
+    vendors_that_sell(item).each do |vendor|
       if vendor.inventory[item] <= quantity
         quantity -= vendor.inventory[item]
         vendor.inventory[item] = 0
