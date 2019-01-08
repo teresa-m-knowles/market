@@ -218,15 +218,10 @@ class MarketTest < Minitest::Test
     market.add_vendor(vendor_1)
     market.add_vendor(vendor_2)
     market.add_vendor(vendor_3)
-    binding.pry
 
-    market.remove_item_from_stock("Peaches", 50)
-    binding.pry
+    market.remove_item_from_stock("Peaches", 20)
 
-    assert_equal 10, market.total_inventory["Peaches"]
-
-
-
+    assert_equal 80, market.total_inventory["Peaches"]
   end
 
 

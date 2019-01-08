@@ -66,6 +66,7 @@ class Market
         vendor.inventory[item] = 0
       else
         vendor.inventory[item] -=quantity
+        quantity = 0
       end
     end
   end
