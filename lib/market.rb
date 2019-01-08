@@ -59,19 +59,23 @@ class Market
   end
 
   def remove_item_from_stock(item, quantity)
-    vendors_that_sell(item).each do |vendor|
-      if vendor.inventory[item] <= quantity
-        quantity -= vendor.inventory[item]
-        vendor.inventory[item] = 0
-      else
-        vendor.inventory[item] -=quantity
-        quantity = 0
+    if check_enough_to_sell(item, quantity)
+      vendors_that_sell(item).each do |vendor|
+        if vendor.inventory[item] <= quantity
+          quantity -= vendor.inventory[item]
+          vendor.inventory[item] = 0
+        else
+          vendor.inventory[item] -=quantity
+          quantity = 0
+        end
       end
+    else
+      "Error, not enough items to remove."
     end
   end
 
   def sell(item, quantity)
-    if check_enough_to_sell(item, quantity) == false
+    if !check_enough_to_sell(item, quantity)
       return false
     else
       remove_item_from_stock(item,quantity)
