@@ -39,7 +39,7 @@ class MarketTest < Minitest::Test
 
     expected = [vendor_1,vendor_2, vendor_3]
 
-    assert_equal expected, market.vedors
+    assert_equal expected, market.vendors
   end
 
   def test_it_can_return_vendor_names
@@ -81,7 +81,5 @@ class MarketTest < Minitest::Test
 
     assert_equal expected, market.vendors_that_sell("Peaches")
     assert_equal [vendor_2], market.vendors_that_sell("Banana Nice Cream")
-
-
   end
 end
