@@ -49,7 +49,6 @@ class VendorTest < Minitest::Test
     vendor.stock("Tomatoes", 12)
 
     expected = {"Peaches" => 55, "Tomatoes" => 12}
-    binding.pry
     assert_equal expected, vendor.inventory
   end
 
